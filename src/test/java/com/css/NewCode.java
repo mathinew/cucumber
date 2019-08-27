@@ -1,5 +1,7 @@
 package com.css;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -53,7 +55,7 @@ public class NewCode {
 //		driver.findElement(By.xpath("//input[@name='submit']")).click();
 //	}
 	
-	@When("User provide valid details {string}, {string}, {string} , {string}, {string}")
+/*	@When("User provide valid details {string}, {string}, {string} , {string}, {string}")
 	public void user_provide_valid_details(String fname, String lname, String email, String address, String phone) throws InterruptedException {
 
 		driver.manage().timeouts().implicitlyWait(15000, TimeUnit.SECONDS);
@@ -66,9 +68,37 @@ public class NewCode {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
 		
+	}*/
+	
+	/*@When("User provide valid details")
+	public void user_provide_valid_details(io.cucumber.datatable.DataTable dataTable) {
+	   System.out.println("when -1");
+	   List<String> oned = dataTable.asList(String.class);
+	   System.out.println(oned);
+	   driver.findElement(By.xpath("//label[text()='Done']")).click();
+	   driver.findElement(By.id("fname")).sendKeys(oned.get(0));
+		driver.findElement(By.id("lname")).sendKeys(oned.get(1));
+		driver.findElement(By.id("email")).sendKeys(oned.get(2));
+		driver.findElement(By.xpath("//textarea[@name ='addr']")).sendKeys(oned.get(3));
+		driver.findElement(By.id("telephoneno")).sendKeys(oned.get(4));
+		driver.findElement(By.xpath("//input[@name='submit']")).click();
+	   
+	}*/
+	
+	@When("User provide valid details")
+	public void user_provide_valid_details(io.cucumber.datatable.DataTable dataTable) {
+		Map<String, String> ondmap = dataTable.asMap(String.class, String.class);
+		System.out.println("when-1");
+		driver.findElement(By.xpath("//label[text()='Done']")).click();
+		driver.findElement(By.id("fname")).sendKeys(ondmap.get("fname"));
+		driver.findElement(By.id("lname")).sendKeys(ondmap.get("lname"));
+		driver.findElement(By.id("email")).sendKeys(ondmap.get("email"));
+		driver.findElement(By.xpath("//textarea[@name ='addr']")).sendKeys(ondmap.get("address"));
+		driver.findElement(By.id("telephoneno")).sendKeys(ondmap.get("phone"));
+		driver.findElement(By.xpath("//input[@name='submit']")).click();
+		
 	}
 	
-
 	@Then("Verify customer ID generated for entered details")
 	public void verify_customer_ID_generated_for_entered_details() {
 
