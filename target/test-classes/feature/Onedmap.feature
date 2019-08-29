@@ -3,7 +3,7 @@ Feature: Adding Customer ID
   Scenario: Generate Customer ID
     Given Use should launch browser and url
     And User click Add customer
-    When User provide valid details
+    When User provide valid detailsonedmap
       | fname   | fnamea         |
       | lname   | lnamea         |
       | email   | test@gmail.com |

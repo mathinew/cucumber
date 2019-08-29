@@ -5,7 +5,7 @@ Feature: Adding Customer ID
   Scenario Outline: Generate Customer ID
     Given Use should launch browser and url
     And User click Add customer
-    When User provide valid details "<fname>", "<lname>", "<email>" , "<address>", "<phone>"
+    When User provide valid detailsoutline "<fname>", "<lname>", "<email>" , "<address>", "<phone>"
     Then Verify customer ID generated for entered details
 
 
